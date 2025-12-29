@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* Herbal Green Theme - Magudam Herbals */
+    --background: 60 30% 96%;
+    --foreground: 150 30% 15%;
+
+    --card: 60 25% 98%;
+    --card-foreground: 150 30% 15%;
+
+    --popover: 60 25% 98%;
+    --popover-foreground: 150 30% 15%;
+
+    --primary: 145 45% 28%;
+    --primary-foreground: 60 30% 96%;
+
+    --secondary: 75 35% 88%;
+    --secondary-foreground: 150 30% 18%;
+
+    --muted: 80 20% 92%;
+    --muted-foreground: 150 15% 40%;
+
+    --accent: 42 85% 55%;
+    --accent-foreground: 150 30% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 30% 96%;
+
+    --border: 80 25% 85%;
+    --input: 80 25% 85%;
+    --ring: 145 45% 28%;
+
+    --radius: 0.75rem;
+
+    /* Custom Herbal Colors */
+    --forest: 145 45% 22%;
+    --sage: 120 20% 65%;
+    --cream: 45 40% 94%;
+    --gold: 42 85% 55%;
+    --gold-dark: 38 75% 45%;
+    --leaf: 85 45% 45%;
+    --earth: 30 25% 35%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(145 45% 22% / 0.9) 0%, hsl(120 30% 25% / 0.85) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(60 25% 98%) 0%, hsl(80 20% 95%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(42 85% 55%) 0%, hsl(38 75% 45%) 100%);
+    --gradient-nature: linear-gradient(180deg, hsl(80 20% 92%) 0%, hsl(60 30% 96%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -5px hsl(145 45% 22% / 0.15);
+    --shadow-card: 0 8px 30px -10px hsl(145 45% 22% / 0.2);
+    --shadow-hover: 0 12px 40px -10px hsl(145 45% 22% / 0.25);
+    --shadow-gold: 0 4px 20px -5px hsl(42 85% 55% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 145 45% 22%;
+    --sidebar-foreground: 60 30% 96%;
+    --sidebar-primary: 42 85% 55%;
+    --sidebar-primary-foreground: 150 30% 15%;
+    --sidebar-accent: 145 40% 30%;
+    --sidebar-accent-foreground: 60 30% 96%;
+    --sidebar-border: 145 35% 35%;
+    --sidebar-ring: 42 85% 55%;
+  }
+
+  .dark {
+    --background: 150 30% 8%;
+    --foreground: 60 25% 95%;
+
+    --card: 150 25% 12%;
+    --card-foreground: 60 25% 95%;
+
+    --popover: 150 25% 12%;
+    --popover-foreground: 60 25% 95%;
+
+    --primary: 145 50% 45%;
+    --primary-foreground: 150 30% 8%;
+
+    --secondary: 145 25% 18%;
+    --secondary-foreground: 60 25% 95%;
+
+    --muted: 145 20% 18%;
+    --muted-foreground: 80 15% 60%;
+
+    --accent: 42 85% 55%;
+    --accent-foreground: 150 30% 8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 25% 95%;
+
+    --border: 145 20% 20%;
+    --input: 145 20% 20%;
+    --ring: 145 50% 45%;
+
+    --sidebar-background: 150 30% 6%;
+    --sidebar-foreground: 60 25% 95%;
+    --sidebar-primary: 42 85% 55%;
+    --sidebar-primary-foreground: 150 30% 8%;
+    --sidebar-accent: 145 25% 15%;
+    --sidebar-accent-foreground: 60 25% 95%;
+    --sidebar-border: 145 20% 18%;
+    --sidebar-ring: 42 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Lato', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 py-16 md:px-8 md:py-24 lg:px-16;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  .card-herbal {
+    @apply bg-card rounded-2xl overflow-hidden transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-herbal:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-primary-foreground transition-all duration-300;
+    background: var(--gradient-gold);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -5px hsl(42 85% 55% / 0.5);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold border-2 border-primary-foreground/30 text-primary-foreground transition-all duration-300;
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    @apply bg-primary-foreground/10;
+  }
+
+  .leaf-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 10-15 15-25 15 5 10 15 25 25 35 10-10 20-25 25-35-10 0-20-5-25-15z' fill='%23166534' fill-opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  .input-herbal {
+    @apply w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.6);
+}
