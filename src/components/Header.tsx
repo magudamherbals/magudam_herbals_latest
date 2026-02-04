@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingBag, Leaf, Lock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, ShoppingBag, Leaf } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 const Header = () => {
@@ -63,17 +62,6 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            {/* Admin Link */}
-            <Link
-              to="/admin"
-              className={`hidden md:flex items-center gap-1 text-sm transition-colors duration-300 hover:text-accent ${
-                isScrolled ? 'text-muted-foreground' : 'text-primary-foreground/70'
-              }`}
-            >
-              <Lock size={14} />
-              Admin
-            </Link>
-
             {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
@@ -141,14 +129,6 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <Link
-                to="/admin"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Lock size={18} />
-                Admin Panel
-              </Link>
             </nav>
           </motion.div>
         )}

@@ -26,11 +26,8 @@ export interface Order {
   pincode: string;
   items: CartItem[];
   total: number;
-  status: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered';
+  status: 'pending' | 'processing' | 'shipped' | 'delivered';
   paymentStatus: 'pending' | 'paid' | 'failed' | 'pay_later';
-  paymentMethod: 'online' | 'cod' | 'pay_later';
-  paymentId?: string;
-  isWhatsAppOrder: boolean;
   createdAt: Date;
 }
 

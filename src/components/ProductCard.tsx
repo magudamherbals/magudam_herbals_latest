@@ -177,7 +177,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
               </div>
               <button
                 onClick={handleAddToCart}
-                className={`flex-1 py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 ${
+                className={`flex-1 py-3 px-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap text-sm ${
                   showAdded
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-accent text-accent-foreground hover:opacity-90'
@@ -185,13 +185,13 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
               >
                 {showAdded ? (
                   <>
-                    <Check size={18} />
-                    Added!
+                    <Check size={18} className="flex-shrink-0" />
+                    <span>Added!</span>
                   </>
                 ) : (
                   <>
-                    <ShoppingCart size={18} />
-                    Add to Cart
+                    <ShoppingCart size={18} className="flex-shrink-0" />
+                    <span>Add to Cart</span>
                   </>
                 )}
               </button>

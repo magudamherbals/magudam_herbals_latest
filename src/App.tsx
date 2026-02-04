@@ -32,7 +32,7 @@ const App = () => (
               <BrowserRouter>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="/orders/admin" element={<AdminPage />} />
                   <Route path="/privacy" element={<PrivacyPage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/refund" element={<RefundPage />} />

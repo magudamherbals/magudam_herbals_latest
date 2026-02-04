@@ -155,21 +155,18 @@ const CheckoutPage = () => {
         pincode: formData.pincode,
         items: [...items],
         total: finalTotal,
-        status: 'confirmed',
+        status: 'pending',
         paymentStatus: 'paid',
-        paymentMethod: 'online',
-        paymentId: `pay_${Date.now().toString(36)}`,
-        isWhatsAppOrder: false,
         createdAt: new Date(),
       };
       
-      addOrder(order);
+      await addOrder(order);
       clearCart();
-      
+
       // Send WhatsApp confirmation
       const message = generateWhatsAppMessage(orderId, true);
       window.open(`https://wa.me/919751701257?text=${message}`, '_blank');
-      
+
       navigate(`/order-success?id=${orderId}`);
     } else {
       // Payment failed - DO NOT place order
@@ -189,11 +186,13 @@ const CheckoutPage = () => {
     setStep('payment');
   };
 
-  const handleWhatsAppPayLater = () => {
+  const handleWhatsAppPayLater = async () => {
+    if (!validateForm()) return;
+
     setShowWhatsAppModal(false);
-    
+
     const orderId = `MH${Date.now().toString(36).toUpperCase()}`;
-    
+
     const order: Order = {
       id: orderId,
       customerName: formData.customerName,
@@ -206,18 +205,16 @@ const CheckoutPage = () => {
       total: finalTotal,
       status: 'pending',
       paymentStatus: 'pay_later',
-      paymentMethod: 'pay_later',
-      isWhatsAppOrder: true,
       createdAt: new Date(),
     };
-    
-    addOrder(order);
+
+    await addOrder(order);
     clearCart();
-    
+
     // Open WhatsApp with order details
     const message = generateWhatsAppMessage(orderId, false, true);
     window.open(`https://wa.me/919751701257?text=${message}`, '_blank');
-    
+
     navigate(`/order-success?id=${orderId}`);
   };
 
@@ -271,59 +268,82 @@ const CheckoutPage = () => {
                 <div className="card-herbal p-6">
                   <h2 className="font-display text-xl font-bold mb-6">Delivery Details</h2>
                   <div className="space-y-4">
-                    <input
-                      type="text"
-                      name="customerName"
-                      placeholder="Full Name *"
-                      value={formData.customerName}
-                      onChange={handleInputChange}
-                      className="input-herbal"
-                    />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Full Name <span className="text-red-500">*</span></label>
                       <input
-                        type="tel"
-                        name="mobile"
-                        placeholder="Mobile Number *"
-                        value={formData.mobile}
+                        type="text"
+                        name="customerName"
+                        placeholder="Enter your full name"
+                        value={formData.customerName}
                         onChange={handleInputChange}
                         className="input-herbal"
-                        maxLength={10}
-                      />
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Email (Optional)"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="input-herbal"
+                        required
                       />
                     </div>
-                    <textarea
-                      name="address"
-                      placeholder="Full Address *"
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      rows={3}
-                      className="input-herbal resize-none"
-                    />
                     <div className="grid grid-cols-2 gap-4">
-                      <input
-                        type="text"
-                        name="city"
-                        placeholder="City *"
-                        value={formData.city}
+                      <div>
+                        <label className="text-sm font-medium mb-1 block">Mobile Number <span className="text-red-500">*</span></label>
+                        <input
+                          type="tel"
+                          name="mobile"
+                          placeholder="10-digit mobile"
+                          value={formData.mobile}
+                          onChange={handleInputChange}
+                          className="input-herbal"
+                          maxLength={10}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-1 block">Email <span className="text-muted-foreground text-xs">(Optional)</span></label>
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="your@email.com"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="input-herbal"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Full Address <span className="text-red-500">*</span></label>
+                      <textarea
+                        name="address"
+                        placeholder="House/Flat No, Street, Landmark"
+                        value={formData.address}
                         onChange={handleInputChange}
-                        className="input-herbal"
+                        rows={3}
+                        className="input-herbal resize-none"
+                        required
                       />
-                      <input
-                        type="text"
-                        name="pincode"
-                        placeholder="Pincode *"
-                        value={formData.pincode}
-                        onChange={handleInputChange}
-                        className="input-herbal"
-                        maxLength={6}
-                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium mb-1 block">City <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="city"
+                          placeholder="Enter city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          className="input-herbal"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-1 block">Pincode <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="pincode"
+                          placeholder="6-digit pincode"
+                          value={formData.pincode}
+                          onChange={handleInputChange}
+                          className="input-herbal"
+                          maxLength={6}
+                          required
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
