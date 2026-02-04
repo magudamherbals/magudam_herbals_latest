@@ -13,7 +13,9 @@ import {
   CreditCard,
   LogOut,
   Mail,
-  Lock
+  Lock,
+  Trash2,
+  RotateCcw
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useOrders } from '@/context/OrderContext';
@@ -21,6 +23,16 @@ import { Order } from '@/types';
 import { toast } from 'sonner';
 import { supabase } from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 const MONTHS = [
   { value: '', label: 'All Months' },
@@ -60,7 +72,14 @@ const AdminPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const { orders, updateOrderStatus, updatePaymentStatus, deleteOrder } = useOrders();
+  // Delete confirmation state
+  const [orderToDelete, setOrderToDelete] = useState<Order | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
+  // View mode state (active or deleted orders)
+  const [viewMode, setViewMode] = useState<'active' | 'deleted'>('active');
+
+  const { orders, deletedOrders, updateOrderStatus, updatePaymentStatus, deleteOrder, restoreOrder, fetchDeletedOrders } = useOrders();
 
   // Check auth state on mount
   useEffect(() => {
@@ -77,6 +96,13 @@ const AdminPage = () => {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Fetch deleted orders when switching to deleted view
+  useEffect(() => {
+    if (viewMode === 'deleted') {
+      fetchDeletedOrders();
+    }
+  }, [viewMode]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -295,6 +321,34 @@ const AdminPage = () => {
 
       {/* Orders Content */}
       <div className="container-max px-4 md:px-8 py-6">
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6">
+          <button
+            onClick={() => setViewMode('active')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              viewMode === 'active'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-secondary hover:bg-secondary/80'
+            }`}
+          >
+            <ShoppingCart size={18} />
+            Active Orders ({orders.length})
+          </button>
+          <button
+            onClick={() => setViewMode('deleted')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              viewMode === 'deleted'
+                ? 'bg-destructive text-destructive-foreground'
+                : 'bg-secondary hover:bg-secondary/80'
+            }`}
+          >
+            <Trash2 size={18} />
+            Deleted Orders ({deletedOrders.length})
+          </button>
+        </div>
+
+        {viewMode === 'active' ? (
+          <>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <h2 className="font-display text-2xl font-bold">
             Customer Orders
@@ -590,9 +644,9 @@ const AdminPage = () => {
                       )
                     )}
                     <button
-                      onClick={async () => {
-                        await deleteOrder(order.id);
-                        toast.success('Order deleted');
+                      onClick={() => {
+                        setOrderToDelete(order);
+                        setDeleteDialogOpen(true);
                       }}
                       className="px-3 py-1.5 rounded-lg text-sm bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors"
                     >
@@ -643,7 +697,116 @@ const AdminPage = () => {
             </div>
           </div>
         )}
+          </>
+        ) : (
+          /* Deleted Orders View */
+          <>
+            <h2 className="font-display text-2xl font-bold mb-6">
+              Deleted Orders
+              <span className="text-base font-normal text-muted-foreground ml-2">
+                ({deletedOrders.length})
+              </span>
+            </h2>
+
+            {deletedOrders.length === 0 ? (
+              <div className="text-center py-12 text-muted-foreground">
+                <Trash2 className="mx-auto mb-4" size={48} />
+                <p>No deleted orders</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {deletedOrders.map((order) => (
+                  <div key={order.id} className="card-herbal p-6 border-destructive/20">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2 flex-wrap">
+                          <h3 className="font-semibold text-lg">{order.customerName}</h3>
+                          <span className="text-xs px-3 py-1 rounded-full font-medium bg-destructive/20 text-destructive">
+                            Deleted
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground flex items-center gap-1">
+                          <Phone size={14} />
+                          {order.mobile}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {order.address}, {order.city} - {order.pincode}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Order ID: {order.id} • {new Date(order.createdAt).toLocaleString()}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-primary">₹{order.total}</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-border pt-4 mb-4">
+                      <p className="text-sm font-medium mb-2">Items:</p>
+                      <div className="space-y-1">
+                        {order.items.map((item) => (
+                          <div key={item.product.id} className="flex justify-between text-sm">
+                            <span>
+                              {item.product.name}
+                              {item.product.specification && ` (${item.product.specification})`} × {item.quantity}
+                            </span>
+                            <span>₹{item.product.price * item.quantity}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Restore Button */}
+                    <div className="flex justify-end">
+                      <button
+                        onClick={async () => {
+                          await restoreOrder(order.id);
+                          toast.success('Order restored successfully');
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                      >
+                        <RotateCcw size={18} />
+                        Restore Order
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Order</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete order from{' '}
+              <span className="font-semibold">{orderToDelete?.customerName}</span>?
+              You can restore it later from the Deleted Orders tab.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setOrderToDelete(null)}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={async () => {
+                if (orderToDelete) {
+                  await deleteOrder(orderToDelete.id);
+                  toast.success('Order deleted');
+                  setOrderToDelete(null);
+                }
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

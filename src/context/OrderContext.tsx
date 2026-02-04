@@ -4,10 +4,13 @@ import { supabase } from '@/lib/supabase';
 
 interface OrderContextType {
   orders: Order[];
+  deletedOrders: Order[];
   addOrder: (order: Order) => Promise<void>;
   updateOrderStatus: (id: string, status: Order['status']) => Promise<void>;
   updatePaymentStatus: (id: string, paymentStatus: Order['paymentStatus']) => Promise<void>;
   deleteOrder: (id: string) => Promise<void>;
+  restoreOrder: (id: string) => Promise<void>;
+  fetchDeletedOrders: () => Promise<void>;
   isLoading: boolean;
 }
 
@@ -27,6 +30,7 @@ interface OrderProviderProps {
 
 export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [deletedOrders, setDeletedOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch orders from Supabase on mount
@@ -40,6 +44,7 @@ export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
       const { data, error } = await supabase
         .from('orders')
         .select('*')
+        .is('deleted_at', null)
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -150,9 +155,10 @@ export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
 
   const deleteOrder = async (id: string) => {
     try {
+      // Soft delete by setting deleted_at timestamp
       const { error } = await supabase
         .from('orders')
-        .delete()
+        .update({ deleted_at: new Date().toISOString() })
         .eq('id', id);
 
       if (error) {
@@ -167,8 +173,66 @@ export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
     }
   };
 
+  const fetchDeletedOrders = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .not('deleted_at', 'is', null)
+        .order('deleted_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching deleted orders:', error);
+        return;
+      }
+
+      if (data) {
+        const mappedOrders: Order[] = data.map((row: any) => ({
+          id: row.id,
+          customerName: row.customer_name,
+          mobile: row.mobile,
+          email: row.email,
+          address: row.address,
+          city: row.city,
+          pincode: row.pincode,
+          items: row.items,
+          total: row.total,
+          status: row.status,
+          paymentStatus: row.payment_status,
+          createdAt: new Date(row.created_at),
+        }));
+        setDeletedOrders(mappedOrders);
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    }
+  };
+
+  const restoreOrder = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .update({ deleted_at: null })
+        .eq('id', id);
+
+      if (error) {
+        console.error('Error restoring order:', error);
+        return;
+      }
+
+      // Move from deletedOrders to orders
+      const restoredOrder = deletedOrders.find((o) => o.id === id);
+      if (restoredOrder) {
+        setDeletedOrders((prev) => prev.filter((o) => o.id !== id));
+        setOrders((prev) => [restoredOrder, ...prev]);
+      }
+    } catch (err) {
+      console.error('Error restoring order:', err);
+    }
+  };
+
   return (
-    <OrderContext.Provider value={{ orders, addOrder, updateOrderStatus, updatePaymentStatus, deleteOrder, isLoading }}>
+    <OrderContext.Provider value={{ orders, deletedOrders, addOrder, updateOrderStatus, updatePaymentStatus, deleteOrder, restoreOrder, fetchDeletedOrders, isLoading }}>
       {children}
     </OrderContext.Provider>
   );
