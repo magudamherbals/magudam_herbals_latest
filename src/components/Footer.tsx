@@ -15,7 +15,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-primary-foreground/80 mb-6 max-w-sm">
-              Traditional herbal products made with natural ingredients and Ayurvedic knowledge. Bringing nature's best to your skin and hair care routine.
+              Traditional herbal products made with natural ingredients. Bringing nature's best to your skin and hair care routine.
             </p>
             <div className="flex gap-4">
               <a

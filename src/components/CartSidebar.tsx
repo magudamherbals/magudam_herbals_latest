@@ -136,9 +136,9 @@ const CartSidebar = () => {
                   <span className="font-medium">Total</span>
                   <span className="font-bold text-primary text-2xl">₹{totalPrice}</span>
                 </div>
-                {/* <p className="text-sm text-muted-foreground text-center">
-                  Free Shipping • Secure Payment
-                </p> */}
+                <p className="text-sm text-muted-foreground text-center">
+                  Shipping Charges excluded
+                </p>
                 <button
                   onClick={handleCheckout}
                   className="btn-primary w-full"

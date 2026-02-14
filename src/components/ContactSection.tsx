@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
-import { MapPin, Phone, Instagram, MessageCircle, Mail } from 'lucide-react';
+import { MapPin, Phone, Instagram, MessageCircle, Mail, Facebook, Youtube } from 'lucide-react';
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -31,7 +31,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Location */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,6 +106,48 @@ const ContactSection = () => {
             </h3>
             <a
               href="https://instagram.com/magudam_herbal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              @magudam_herbal
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="card-herbal p-8 text-center"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+              <Facebook className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+              Facebook
+            </h3>
+            <a
+              href="https://www.facebook.com/profile.php?id=61555465721959"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              @magudam_herbal
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="card-herbal p-8 text-center"
+          >
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+              <Youtube className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+              Youtube
+            </h3>
+            <a
+              href="https://youtube.com/@magudam_herbal"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"

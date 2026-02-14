@@ -91,7 +91,7 @@ const OrderSuccessPage = () => {
           <div className="card-herbal p-6 mb-6">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
               <div>
-                <p className="text-sm text-muted-foreground">Order ID</p>
+                <p className="text-sm text-muted-foreground">Order ID (Save your order id for tracking your order)</p>
                 <div className="flex items-center gap-2">
                   <span className="font-display text-xl font-bold text-primary">{order.id}</span>
                   <button

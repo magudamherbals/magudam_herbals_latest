@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Leaf, Heart, Shield, Sparkles } from 'lucide-react';
+import { Leaf, Heart, Shield, Sparkles, BadgeCheck, ReceiptIndianRupee } from 'lucide-react';
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -16,7 +16,7 @@ const AboutSection = () => {
     {
       icon: Heart,
       title: 'Traditional Methods',
-      description: 'Time-tested Ayurvedic recipes',
+      description: 'Time-tested Herbal recipes',
     },
     {
       icon: Shield,
@@ -53,6 +53,50 @@ const AboutSection = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Our formulations are passed down through generations, combining the wisdom of Ayurveda with modern quality standards. Every product is crafted with love and care to bring you the best of nature.
             </p>
+
+            <div className="card-herbal mt-8 overflow-hidden">
+              <div className="px-6 py-4 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent border-b border-border/60">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-primary/15 flex items-center justify-center">
+                    <BadgeCheck className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-foreground leading-tight">
+                      Business Details
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Verified registration information
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 grid sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-border/60 bg-background/50 p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <ReceiptIndianRupee className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-muted-foreground">GSTIN</p>
+                      <p className="font-semibold text-foreground tracking-wide break-all">33BIYPR0246N1ZK</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-border/60 bg-background/50 p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <BadgeCheck className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-muted-foreground">MSME / Udyam Reg. No</p>
+                      <p className="font-semibold text-foreground break-all">UDYAM-TN-07-0081736</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Features Grid */}

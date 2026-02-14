@@ -31,7 +31,7 @@ const RefundPage = () => {
 
           <h3 className="font-display text-xl text-foreground mt-6 mb-3">Shipping Charges</h3>
           <p>
-            <strong>Free Shipping</strong> on all orders! No minimum order value required.
+            Shipping charges are applicable, and charges are based on the weight of the order and the distance. No minimum order value required.
           </p>
 
           <h3 className="font-display text-xl text-foreground mt-6 mb-3">Delivery Time</h3>
