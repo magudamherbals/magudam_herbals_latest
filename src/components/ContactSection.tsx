@@ -105,12 +105,12 @@ const ContactSection = () => {
               Instagram
             </h3>
             <a
-              href="https://instagram.com/magudam_herbal"
+              href="https://instagram.com/magudam_herbals"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              @magudam_herbal
+              @magudam_herbals
             </a>
           </motion.div>
           <motion.div
@@ -131,7 +131,7 @@ const ContactSection = () => {
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              @magudam_herbal
+              @magudam_herbals
             </a>
           </motion.div>
           <motion.div
@@ -147,12 +147,12 @@ const ContactSection = () => {
               Youtube
             </h3>
             <a
-              href="https://youtube.com/@magudam_herbal"
+              href="https://youtube.com/@magudam_herbals"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              @magudam_herbal
+              @magudam_herbals
             </a>
           </motion.div>
         </div>

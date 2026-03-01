@@ -51,8 +51,7 @@ const AboutSection = () => {
               <strong className="text-foreground">Magudam Herbals</strong> is a traditional herbal products brand based in Kodumudi, Tamil Nadu. We prepare our products using natural ingredients, traditional knowledge, and hygienic methods to provide safe and effective herbal care for skin and hair.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Our formulations are passed down through generations, combining the wisdom of Ayurveda with modern quality standards. Every product is crafted with love and care to bring you the best of nature.
-            </p>
+              Our formulations are passed down through generations, combining traditional herbal wisdom with modern quality standards. Every product is crafted with love and care to bring you the best of nature.
 
             <div className="card-herbal mt-8 overflow-hidden">
               <div className="px-6 py-4 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent border-b border-border/60">
