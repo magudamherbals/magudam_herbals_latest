@@ -82,7 +82,7 @@ const RefundPage = () => {
           </p>
           <ul className="list-disc pl-6 mt-2 space-y-2">
             <li><strong>Phone/WhatsApp:</strong> +91 97517 01257</li>
-            <li><strong>Instagram:</strong> @magudam_herbal</li>
+            <li><strong>Instagram:</strong> @magudam_herbals</li>
           </ul>
           <p className="mt-4">
             Please include your order details and reason for return/refund in your message.

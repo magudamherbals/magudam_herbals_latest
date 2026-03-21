@@ -67,7 +67,7 @@ const PrivacyPage = () => {
             <strong>Magudam Herbals</strong><br />
             Kodumudi, Tamil Nadu, India<br />
             Phone: +91 97517 01257<br />
-            Instagram: @magudam_herbal
+            Instagram: @magudam_herbals
           </p>
         </div>
       </div>
