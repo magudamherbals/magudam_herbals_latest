@@ -52,7 +52,7 @@ const AboutSection = () => {
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Our formulations are passed down through generations, combining traditional herbal wisdom with modern quality standards. Every product is crafted with love and care to bring you the best of nature.
-
+            </p>
             <div className="card-herbal mt-8 overflow-hidden">
               <div className="px-6 py-4 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent border-b border-border/60">
                 <div className="flex items-center gap-3">
