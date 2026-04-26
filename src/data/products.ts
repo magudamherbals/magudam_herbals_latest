@@ -8,7 +8,7 @@ import papayasoap from '@/assets/papaya_soap.webp';
 import herbalhairoil100ml from '@/assets/hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
-import shikakaiShampoo from '@/assets/shikakai_shampoo.webp';
+import shikakaiShampoo from '@/assets/Shikakai_Shampoo.webp';
 
 export const initialProducts: Product[] = [
   {
