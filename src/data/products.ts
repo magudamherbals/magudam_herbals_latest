@@ -8,6 +8,7 @@ import papayasoap from '@/assets/papaya_soap.webp';
 import herbalhairoil100ml from '@/assets/hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
+import shikakaiShampoo from '@/assets/shikakai_shampoo.webp';
 
 export const initialProducts: Product[] = [
   {
@@ -67,6 +68,18 @@ export const initialProducts: Product[] = [
     images: [herbalshampoo],
     specification: '220 ml',
     ingredients: ['Curry Leaf', 'Indigo', 'Aavarampoo', 'Kesavardhini', 'Bhringraj', 'Shampoo Base'],
+    category: 'shampoo',
+    inStock: true,
+  },
+  {
+    id: '6',
+    name: 'Shikakai Shampoo',
+    description: 'Helps control dandruff & promotes healthy hair growth with the goodness of traditional herbal extracts.',
+    price: 140,
+    image: shikakaiShampoo,
+    images: [shikakaiShampoo],
+    specification: '220 ml',
+    ingredients: ['Curry Leaf', 'Indigo', 'Aavarampoo', 'Kesavardhini', 'Bhringraj', 'Shampoo Base', 'Shikakai', 'Fenugreek', 'Moong Dal', 'Bengal Gram', 'Soapnut'],
     category: 'shampoo',
     inStock: true,
   }
