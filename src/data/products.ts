@@ -5,10 +5,15 @@ import aavarampooSoapbox from '@/assets/aavarampoo_soap_box.webp';
 import aavarampooSoap from '@/assets/aavarampoo_soap.webp';
 import papayasoapbox from '@/assets/papaya_soap_box.webp';
 import papayasoap from '@/assets/papaya_soap.webp';
-import herbalhairoil100ml from '@/assets/hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
 import shikakaiShampoo from '@/assets/Shikakai_Shampoo.webp';
+import nalanguPowder1 from '@/assets/Nalagu_maavu_1.jpg';
+import nalanguPowder2 from '@/assets/Nalagu_maavu_2.jpg';
+import hairDyePowderBlack from '@/assets/Hair_dye_black.jpg';
+import hairDyePowderBrown from '@/assets/Hair_dye_brown.jpg';
+
+
 
 export const initialProducts: Product[] = [
   {
@@ -81,6 +86,42 @@ export const initialProducts: Product[] = [
     specification: '220 ml',
     ingredients: ['Curry Leaf', 'Indigo', 'Aavarampoo', 'Kesavardhini', 'Bhringraj', 'Shampoo Base', 'Shikakai', 'Fenugreek', 'Moong Dal', 'Bengal Gram', 'Soapnut'],
     category: 'shampoo',
+    inStock: true,
+  },
+  {
+    id: '7',
+    name: 'Hair Dye Powder - Black Colour',
+    description: '100% natural herbal hair dye for a rich black colour with 0% chemicals.',
+    price: 80,
+    image: hairDyePowderBlack,
+    images: [hairDyePowderBlack],
+    specification: '50 gm',
+    ingredients: ['Avuri', 'Katha'],
+    category: 'powder',
+    inStock: true,
+  },
+  {
+    id: '8',
+    name: 'Hair Dye Powder - Brown Colour',
+    description: '100% natural herbal hair dye for a beautiful brown shade with 0% chemicals.',
+    price: 80,
+    image: hairDyePowderBrown,
+    images: [hairDyePowderBrown],
+    specification: '50 gm',
+    ingredients: ['Avuri', 'Katha', 'Maruthani', 'Kariya Polam'],
+    category: 'powder',
+    inStock: true,
+  },
+  {
+    id: '9',
+    name: 'Nalangu Powder',
+    description: 'Gently cleanses and softens the skin, promotes a natural glow, helps reduce acne & dark spots, and is ideal for daily bathing.',
+    price: 65,
+    image: nalanguPowder1,
+    images: [nalanguPowder1, nalanguPowder2],
+    specification: '50 gm',
+    ingredients: ['Manjistha', 'Aavarampoo', 'Rose Petals', 'Magizham Flower', 'Orange Peel', 'Green Gram', 'Mysore Dal', 'Vetiver Root', 'Nut Grass', 'Poolan Kilangu'],
+    category: 'powder',
     inStock: true,
   }
 ];

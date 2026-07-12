@@ -7,7 +7,7 @@ export interface Product {
   images?: string[]; // Support for multiple images
   specification?: string; // e.g., "100 ml", "75 g"
   ingredients: string[];
-  category: 'soap' | 'oil' | 'shampoo';
+  category: 'soap' | 'oil' | 'shampoo' | 'powder';
   inStock: boolean;
 }
 
