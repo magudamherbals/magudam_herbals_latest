@@ -5,7 +5,7 @@ import aavarampooSoapbox from '@/assets/aavarampoo_soap_box.webp';
 import aavarampooSoap from '@/assets/aavarampoo_soap.webp';
 import papayasoapbox from '@/assets/papaya_soap_box.webp';
 import papayasoap from '@/assets/papaya_soap.webp';
-import herbalhairoil100ml from '@/assets/herbal_hair_oil_100ml.webp';
+import herbalhairoil100ml from '@/assets/hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
 import shikakaiShampoo from '@/assets/Shikakai_Shampoo.webp';
