@@ -5,6 +5,7 @@ import aavarampooSoapbox from '@/assets/aavarampoo_soap_box.webp';
 import aavarampooSoap from '@/assets/aavarampoo_soap.webp';
 import papayasoapbox from '@/assets/papaya_soap_box.webp';
 import papayasoap from '@/assets/papaya_soap.webp';
+import herbalhairoil100ml from '@/assets/herbal_hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
 import shikakaiShampoo from '@/assets/Shikakai_Shampoo.webp';
@@ -56,6 +57,18 @@ export const initialProducts: Product[] = [
     id: '4',
     name: 'Herbal Hair Oil',
     description: 'Strengthens roots & promotes healthy hair growth naturally with the goodness of traditional herbal oils.',
+    price: 120,
+    image: herbalhairoil100ml,
+    images: [herbalhairoil100ml],
+    specification: '100 ml',
+    ingredients: ['Curry Leaf', 'Indigo', 'Aavarampoo', 'Kesavardhini', 'Bhringraj', 'Coconut Oil', 'Hibiscus', 'Henna'],
+    category: 'oil',
+    inStock: true,
+  },
+  {
+    id: '5',
+    name: 'Herbal Hair Oil',
+    description: 'Strengthens roots & promotes healthy hair growth naturally with the goodness of traditional herbal oils.',
     price: 240,
     image: herbalhairoil200ml,
     images: [herbalhairoil200ml],
@@ -65,7 +78,7 @@ export const initialProducts: Product[] = [
     inStock: true,
   },
   {
-    id: '5',
+    id: '6',
     name: 'Herbal Shampoo',
     description: 'Helps control dandruff & promotes healthy hair growth with the goodness of traditional herbal extracts.',
     price: 130,
@@ -77,10 +90,10 @@ export const initialProducts: Product[] = [
     inStock: true,
   },
   {
-    id: '6',
+    id: '7',
     name: 'Shikakai Shampoo',
     description: 'Helps control dandruff & promotes healthy hair growth with the goodness of traditional herbal extracts.',
-    price: 140,
+    price: 150,
     image: shikakaiShampoo,
     images: [shikakaiShampoo],
     specification: '220 ml',
@@ -89,10 +102,10 @@ export const initialProducts: Product[] = [
     inStock: true,
   },
   {
-    id: '7',
+    id: '8',
     name: 'Hair Dye Powder - Black Colour',
     description: '100% natural herbal hair dye for a rich black colour with 0% chemicals.',
-    price: 80,
+    price: 100,
     image: hairDyePowderBlack,
     images: [hairDyePowderBlack],
     specification: '50 gm',
@@ -101,10 +114,10 @@ export const initialProducts: Product[] = [
     inStock: true,
   },
   {
-    id: '8',
+    id: '9',
     name: 'Hair Dye Powder - Brown Colour',
     description: '100% natural herbal hair dye for a beautiful brown shade with 0% chemicals.',
-    price: 80,
+    price: 100,
     image: hairDyePowderBrown,
     images: [hairDyePowderBrown],
     specification: '50 gm',
@@ -113,10 +126,10 @@ export const initialProducts: Product[] = [
     inStock: true,
   },
   {
-    id: '9',
+    id: '10',
     name: 'Nalangu Powder',
     description: 'Gently cleanses and softens the skin, promotes a natural glow, helps reduce acne & dark spots, and is ideal for daily bathing.',
-    price: 65,
+    price: 80,
     image: nalanguPowder1,
     images: [nalanguPowder1, nalanguPowder2],
     specification: '50 gm',
