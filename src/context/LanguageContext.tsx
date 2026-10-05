@@ -93,6 +93,8 @@ const translations: Record<Language, Record<string, string>> = {
     'cart.shipping.local.above1kg': 'Above 1 kg',
     'cart.shipping.outstation': '\ud83c\udf0d Outside 90 km (Outstation)',
     'cart.shipping.outstation.rate': 'Per kg',
+    'cart.shipping.outstation.upto1kg': 'Up to 1 kg',
+    'cart.shipping.outstation.above1kg': 'Above 1 kg',
     'cart.remove': 'Remove',
 
     // Products — names & descriptions
@@ -201,6 +203,8 @@ const translations: Record<Language, Record<string, string>> = {
     'cart.shipping.local.above1kg': '1 \u0b95\u0bbf.\u0b95\u0bbf. \u0bae\u0bc7\u0bb2\u0bcd',
     'cart.shipping.outstation': '\ud83c\udf0d 90 \u0b95\u0bbf.\u0bae\u0bc0. \u0b95\u0bcd\u0b95\u0bc1 \u0bb5\u0bc6\u0bb3\u0bbf\u0baf\u0bc7 (\u0bb5\u0bc6\u0bb3\u0bbf\u0bae\u0bbe\u0bb5\u0b9f\u0bcd\u0b9f\u0bae\u0bcd)',
     'cart.shipping.outstation.rate': '\u0b92\u0bb0\u0bc1 \u0b95\u0bbf.\u0b95\u0bbf.',
+    'cart.shipping.outstation.upto1kg': '1 \u0b95\u0bbf.\u0b95\u0bbf. \u0bb5\u0bb0\u0bc8',
+    'cart.shipping.outstation.above1kg': '1 \u0b95\u0bbf.\u0b95\u0bbf. \u0bae\u0bc7\u0bb2\u0bcd',
     'cart.remove': '\u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1',
 
     // Products \u2014 names & descriptions

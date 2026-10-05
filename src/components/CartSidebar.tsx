@@ -146,14 +146,15 @@ const CartSidebar = () => {
                   <div className="space-y-1">
                     <p className="font-medium text-foreground/80">{t('cart.shipping.local')}</p>
                     <ul className="ml-3 space-y-0.5 list-disc list-inside">
-                      <li>{t('cart.shipping.local.upto1kg')} — <span className="font-semibold text-primary">₹70</span></li>
-                      <li>{t('cart.shipping.local.above1kg')} — <span className="font-semibold text-primary">₹100</span></li>
+                      <li>{t('cart.shipping.local.upto1kg')} around <span className="font-semibold text-primary">₹70</span></li>
+                      <li>{t('cart.shipping.local.above1kg')} around <span className="font-semibold text-primary">₹100</span></li>
                     </ul>
                   </div>
                   <div className="space-y-1 pt-1 border-t border-border">
                     <p className="font-medium text-foreground/80">{t('cart.shipping.outstation')}</p>
                     <ul className="ml-3 space-y-0.5 list-disc list-inside">
-                      <li>{t('cart.shipping.outstation.rate')} — <span className="font-semibold text-primary">₹100 – ₹200</span></li>
+                      <li>{t('cart.shipping.outstation.upto1kg')} around <span className="font-semibold text-primary">₹100</span></li>
+                      <li>{t('cart.shipping.outstation.above1kg')} around <span className="font-semibold text-primary">₹200</span></li>
                     </ul>
                   </div>
                 </div>
