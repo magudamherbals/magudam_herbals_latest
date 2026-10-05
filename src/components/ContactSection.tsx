@@ -2,10 +2,12 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { MapPin, Phone, Instagram, MessageCircle, Mail, Facebook, Youtube } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/919751701257?text=Hello! I would like to know more about Magudam Herbals products.', '_blank');
@@ -21,13 +23,13 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            Get in Touch
+            {t('contact.badge')}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Contact Us
+            {t('contact.heading')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have questions about our products? We'd love to hear from you.
+            {t('contact.subheading')}
           </p>
         </motion.div>
 
@@ -43,10 +45,10 @@ const ContactSection = () => {
               <MapPin className="w-8 h-8 text-primary" />
             </div>
             <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-              Location
+              {t('contact.location')}
             </h3>
-            <p className="text-muted-foreground">
-              Kodumudi, Tamil Nadu<br />India
+            <p className="text-muted-foreground whitespace-pre-line">
+              {t('contact.locationVal')}
             </p>
           </motion.div>
 
@@ -61,7 +63,7 @@ const ContactSection = () => {
               <Phone className="w-8 h-8 text-primary" />
             </div>
             <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-              Phone
+              {t('contact.phone')}
             </h3>
             <a
               href="tel:+919751701257"
@@ -81,7 +83,7 @@ const ContactSection = () => {
               <Mail className="w-8 h-8 text-primary" />
             </div>
             <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-              Email
+              {t('contact.email')}
             </h3>
             <a
               href="mailto:magudamherbals@gmail.com"
@@ -169,7 +171,7 @@ const ContactSection = () => {
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#25D366] text-foreground font-semibold text-lg transition-all duration-300 hover:bg-[#22c55e] hover:scale-105 shadow-lg"
           >
             <MessageCircle size={24} />
-            Chat on WhatsApp
+            {t('contact.whatsapp')}
           </button>
         </motion.div>
       </div>

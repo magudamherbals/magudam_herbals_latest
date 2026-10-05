@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ShoppingBag, MessageCircle, Leaf } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.png';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface HeroSectionProps {
   onShopClick: () => void;
@@ -8,6 +9,8 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ onShopClick, onContactClick }: HeroSectionProps) => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -59,7 +62,7 @@ const HeroSection = ({ onShopClick, onContactClick }: HeroSectionProps) => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground text-sm mb-6"
           >
             <Leaf size={16} />
-            <span>Traditional Herbal Products from Tamil Nadu</span>
+            <span>{t('hero.badge')}</span>
           </motion.div>
 
           {/* Brand Name */}
@@ -80,7 +83,7 @@ const HeroSection = ({ onShopClick, onContactClick }: HeroSectionProps) => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-light"
           >
-            Pure Herbal Care from Nature
+            {t('hero.tagline')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -95,14 +98,14 @@ const HeroSection = ({ onShopClick, onContactClick }: HeroSectionProps) => {
               className="btn-primary flex items-center gap-3 text-lg"
             >
               <ShoppingBag size={20} />
-              Shop Now
+              {t('hero.shopNow')}
             </button>
             <button
               onClick={onContactClick}
               className="btn-outline flex items-center gap-3 text-lg"
             >
               <MessageCircle size={20} />
-              Contact Us
+              {t('hero.contactUs')}
             </button>
           </motion.div>
 
@@ -117,19 +120,19 @@ const HeroSection = ({ onShopClick, onContactClick }: HeroSectionProps) => {
               <div className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center">
                 🌿
               </div>
-              <span className="text-sm">100% Natural</span>
+              <span className="text-sm">{t('hero.natural')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center">
                 🧪
               </div>
-              <span className="text-sm">No Chemicals</span>
+              <span className="text-sm">{t('hero.noChemicals')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center">
                 🇮🇳
               </div>
-              <span className="text-sm">Made in India</span>
+              <span className="text-sm">{t('hero.madeInIndia')}</span>
             </div>
           </motion.div>
         </motion.div>

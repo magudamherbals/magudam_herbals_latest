@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Leaf, Instagram, Phone, MapPin, Mail } from 'lucide-react';
+import { MapPin, Instagram, Phone, Mail } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container-max section-padding">
@@ -15,7 +18,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-primary-foreground/80 mb-6 max-w-sm">
-              Traditional herbal products made with natural ingredients. Bringing nature's best to your skin and hair care routine.
+              {t('footer.tagline')}
             </p>
             <div className="flex gap-4">
               <a
@@ -43,21 +46,21 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-display text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#about" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  About Us
+                  {t('nav.about')}
                 </a>
               </li>
               <li>
                 <a href="#products" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Products
+                  {t('nav.products')}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Contact
+                  {t('nav.contact')}
                 </a>
               </li>
             </ul>
@@ -65,21 +68,21 @@ const Footer = () => {
 
           {/* Policies */}
           <div>
-            <h3 className="font-display text-lg font-semibold mb-4">Policies</h3>
+            <h3 className="font-display text-lg font-semibold mb-4">{t('footer.policies')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/privacy" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Privacy Policy
+                  {t('footer.privacy')}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Terms & Conditions
+                  {t('footer.terms')}
                 </Link>
               </li>
               <li>
                 <Link to="/refund" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                  Refund & Shipping
+                  {t('footer.refund')}
                 </Link>
               </li>
             </ul>
@@ -90,11 +93,11 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © {new Date().getFullYear()} Magudam Herbals – All Rights Reserved
+              {t('footer.copyright').replace('{year}', String(new Date().getFullYear()))}
             </p>
             <div className="flex items-center gap-2 text-primary-foreground/60 text-sm">
               <MapPin size={16} />
-              <span>Made with ❤️ in India 🇮🇳</span>
+              <span>{t('footer.madeWith')}</span>
             </div>
           </div>
         </div>
@@ -104,7 +107,7 @@ const Footer = () => {
       <div className="bg-primary/80 py-4">
         <div className="container-max px-4 md:px-8 lg:px-16">
           <p className="text-xs text-primary-foreground/60 text-center">
-            <strong>Disclaimer:</strong> Our products are traditional herbal preparations and are not intended to diagnose, treat, cure, or prevent any disease. Individual results may vary. Please consult a healthcare professional before use if you have any specific health concerns.
+            <strong>Disclaimer:</strong> {t('footer.disclaimer').replace('Disclaimer: ', '')}
           </p>
         </div>
       </div>

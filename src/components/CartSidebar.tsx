@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CartSidebar = () => {
   const {
@@ -14,6 +15,7 @@ const CartSidebar = () => {
     setIsCartOpen,
   } = useCart();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleCheckout = () => {
     setIsCartOpen(false);
@@ -46,7 +48,7 @@ const CartSidebar = () => {
               <div className="flex items-center gap-3">
                 <ShoppingBag className="text-primary" size={24} />
                 <h2 className="font-display text-xl font-semibold">
-                  Your Cart ({totalItems})
+                  {t('cart.title')} ({totalItems})
                 </h2>
               </div>
               <button
@@ -62,12 +64,12 @@ const CartSidebar = () => {
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                   <ShoppingBag className="text-muted-foreground mb-4" size={48} />
-                  <p className="text-lg text-muted-foreground">Your cart is empty</p>
+                  <p className="text-lg text-muted-foreground">{t('cart.empty')}</p>
                   <button
                     onClick={() => setIsCartOpen(false)}
                     className="mt-4 text-primary font-medium hover:underline"
                   >
-                    Continue Shopping
+                    {t('cart.startShopping')}
                   </button>
                 </div>
               ) : (
@@ -84,7 +86,7 @@ const CartSidebar = () => {
                       />
                       <div className="flex-1">
                         <h3 className="font-medium text-foreground">
-                          {item.product.name}
+                          {t(`p.${item.product.id}.name`) !== `p.${item.product.id}.name` ? t(`p.${item.product.id}.name`) : item.product.name}
                         </h3>
                         {item.product.specification && (
                           <p className="text-xs text-primary">{item.product.specification}</p>
@@ -133,17 +135,33 @@ const CartSidebar = () => {
             {items.length > 0 && (
               <div className="border-t border-border p-6 space-y-4">
                 <div className="flex justify-between items-center text-lg">
-                  <span className="font-medium">Total</span>
+                  <span className="font-medium">{t('cart.total')}</span>
                   <span className="font-bold text-primary text-2xl">₹{totalPrice}</span>
                 </div>
-                <p className="text-sm text-muted-foreground text-center">
-                  Shipping Charges excluded
-                </p>
+                {/* Shipping Info */}
+                <div className="rounded-lg border border-border bg-muted/40 p-3 space-y-2 text-xs text-muted-foreground">
+                  <p className="font-semibold text-foreground text-xs uppercase tracking-wide flex items-center gap-1">
+                    {t('cart.shipping.title')}
+                  </p>
+                  <div className="space-y-1">
+                    <p className="font-medium text-foreground/80">{t('cart.shipping.local')}</p>
+                    <ul className="ml-3 space-y-0.5 list-disc list-inside">
+                      <li>{t('cart.shipping.local.upto1kg')} — <span className="font-semibold text-primary">₹70</span></li>
+                      <li>{t('cart.shipping.local.above1kg')} — <span className="font-semibold text-primary">₹100</span></li>
+                    </ul>
+                  </div>
+                  <div className="space-y-1 pt-1 border-t border-border">
+                    <p className="font-medium text-foreground/80">{t('cart.shipping.outstation')}</p>
+                    <ul className="ml-3 space-y-0.5 list-disc list-inside">
+                      <li>{t('cart.shipping.outstation.rate')} — <span className="font-semibold text-primary">₹100 – ₹200</span></li>
+                    </ul>
+                  </div>
+                </div>
                 <button
                   onClick={handleCheckout}
                   className="btn-primary w-full"
                 >
-                  Proceed to Checkout
+                  {t('cart.checkout')}
                 </button>
               </div>
             )}

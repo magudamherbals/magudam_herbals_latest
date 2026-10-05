@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { CartProvider } from "@/context/CartContext";
 import { ProductProvider } from "@/context/ProductContext";
 import { OrderProvider } from "@/context/OrderContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import Index from "./pages/Index";
 import AdminPage from "./pages/AdminPage";
 import PrivacyPage from "./pages/PrivacyPage";
@@ -34,6 +35,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
       <ProductProvider>
         <CartProvider>
           <OrderProvider>
@@ -60,6 +62,7 @@ const App = () => (
           </OrderProvider>
         </CartProvider>
       </ProductProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );

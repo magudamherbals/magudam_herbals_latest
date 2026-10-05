@@ -9,11 +9,14 @@ import herbalhairoil100ml from '@/assets/hair_oil_100ml.webp';
 import herbalhairoil200ml from '@/assets/hair_oil_200ml.webp';
 import herbalshampoo from '@/assets/herbal_shampoo.webp';
 import shikakaiShampoo from '@/assets/Shikakai_Shampoo.webp';
-import nalanguPowder1 from '@/assets/Nalagu_maavu_1.jpg';
-import nalanguPowder2 from '@/assets/Nalagu_maavu_2.jpg';
-import hairDyePowderBlack from '@/assets/Hair_dye_black.jpg';
-import hairDyePowderBrown from '@/assets/Hair_dye_brown.jpg';
-
+import nalanguPowder1 from '@/assets/nalagu_maavu_1.jpg';
+import nalanguPowder2 from '@/assets/nalagu_maavu_2.jpg';
+import hairDyePowderBlack1 from '@/assets/hair_dye_black_1.jpg';
+import hairDyePowderBlack2 from '@/assets/hair_dye_black_2.jpg';
+import faceCream1 from '@/assets/face_cream_1.jpg';
+import faceCream2 from '@/assets/face_cream_2.jpg';
+import kneePainOil1 from '@/assets/knee_pain_oil_1.jpg';
+import kneePainOil2 from '@/assets/knee_pain_oil_2.jpg';
 
 
 export const initialProducts: Product[] = [
@@ -106,27 +109,27 @@ export const initialProducts: Product[] = [
     name: 'Hair Dye Powder - Black Colour',
     description: '100% natural herbal hair dye for a rich black colour with 0% chemicals.',
     price: 100,
-    image: hairDyePowderBlack,
-    images: [hairDyePowderBlack],
+    image: hairDyePowderBlack1,
+    images: [hairDyePowderBlack1, hairDyePowderBlack2],
     specification: '50 gm',
     ingredients: ['Avuri', 'Katha'],
     category: 'powder',
     inStock: true,
   },
+  // {
+  //   id: '9',
+  //   name: 'Hair Dye Powder - Brown Colour',
+  //   description: '100% natural herbal hair dye for a beautiful brown shade with 0% chemicals.',
+  //   price: 100,
+  //   image: hairDyePowderBrown,
+  //   images: [hairDyePowderBrown],
+  //   specification: '50 gm',
+  //   ingredients: ['Avuri', 'Katha', 'Maruthani', 'Kariya Polam'],
+  //   category: 'powder',
+  //   inStock: true,
+  // },
   {
     id: '9',
-    name: 'Hair Dye Powder - Brown Colour',
-    description: '100% natural herbal hair dye for a beautiful brown shade with 0% chemicals.',
-    price: 100,
-    image: hairDyePowderBrown,
-    images: [hairDyePowderBrown],
-    specification: '50 gm',
-    ingredients: ['Avuri', 'Katha', 'Maruthani', 'Kariya Polam'],
-    category: 'powder',
-    inStock: true,
-  },
-  {
-    id: '10',
     name: 'Nalangu Powder',
     description: 'Gently cleanses and softens the skin, promotes a natural glow, helps reduce acne & dark spots, and is ideal for daily bathing.',
     price: 80,
@@ -136,5 +139,30 @@ export const initialProducts: Product[] = [
     ingredients: ['Manjistha', 'Aavarampoo', 'Rose Petals', 'Magizham Flower', 'Orange Peel', 'Green Gram', 'Mysore Dal', 'Vetiver Root', 'Nut Grass', 'Poolan Kilangu'],
     category: 'powder',
     inStock: true,
+  },
+  {
+    id: '10',
+    name: 'Pigmentation & Night Cream',
+    description: 'Nourishes overnight, brightens uneven skin tone & reveals a naturally radiant glow.',
+    price: 80,
+    image: faceCream1,
+    images: [faceCream1, faceCream2],
+    specification: '15 gm',
+    ingredients: ['Badam', 'Manjistha', 'Kumkumboo', 'Poovarsu Leaves', 'Orange Peel', 'Carrot', 'Beeswax', 'etc'],
+    category: 'cream',
+    inStock: true,
+  },
+  {
+    id: '11',
+    name: 'Knee Pain Oil',
+    description: 'Soothes stiff joints & supports comfortable movement with the goodness of traditional herbal ingredients.',
+    price: 150,
+    image: kneePainOil1,
+    images: [kneePainOil1, kneePainOil2],
+    specification: '120 ml',
+    ingredients: ['Mudakathan Leaves', 'Thumbai', 'Pirandai', 'Pudina Salt', 'Pachai Karpooram', 'Ooma Salt', 'etc'],
+    category: 'oil',
+    inStock: true,
   }
+
 ];

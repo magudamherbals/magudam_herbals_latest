@@ -2,32 +2,18 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Leaf, Heart, Shield, Sparkles, BadgeCheck, ReceiptIndianRupee } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const features = [
-    {
-      icon: Leaf,
-      title: 'Natural Ingredients',
-      description: 'Pure herbs sourced from nature',
-    },
-    {
-      icon: Heart,
-      title: 'Traditional Methods',
-      description: 'Time-tested Herbal recipes',
-    },
-    {
-      icon: Shield,
-      title: 'Safe & Hygienic',
-      description: 'Clean production process',
-    },
-    {
-      icon: Sparkles,
-      title: 'Effective Results',
-      description: 'Visible improvement guaranteed',
-    },
+    { icon: Leaf,     titleKey: 'about.feat1.title', descKey: 'about.feat1.desc' },
+    { icon: Heart,    titleKey: 'about.feat2.title', descKey: 'about.feat2.desc' },
+    { icon: Shield,   titleKey: 'about.feat3.title', descKey: 'about.feat3.desc' },
+    { icon: Sparkles, titleKey: 'about.feat4.title', descKey: 'about.feat4.desc' },
   ];
 
   return (
@@ -41,17 +27,18 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              About Us
+              {t('about.badge')}
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-              Traditional Herbal Care for
-              <span className="text-primary"> Modern Living</span>
+              {t('about.heading1')}
+              <span className="text-primary"> {t('about.heading2')}</span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              <strong className="text-foreground">Magudam Herbals</strong> is a traditional herbal products brand based in Kodumudi, Tamil Nadu. We prepare our products using natural ingredients, traditional knowledge, and hygienic methods to provide safe and effective herbal care for skin and hair.
+              <strong className="text-foreground">Magudam Herbals</strong>{' '}
+              {t('about.para1').replace('Magudam Herbals', '').trimStart().replace(/^is a/, 'is a')}
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Our formulations are passed down through generations, combining traditional herbal wisdom with modern quality standards. Every product is crafted with love and care to bring you the best of nature.
+              {t('about.para2')}
             </p>
             <div className="card-herbal mt-8 overflow-hidden">
               <div className="px-6 py-4 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent border-b border-border/60">
@@ -61,10 +48,10 @@ const AboutSection = () => {
                   </div>
                   <div>
                     <h3 className="font-display text-lg font-semibold text-foreground leading-tight">
-                      Business Details
+                      {t('about.bizDetails')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Verified registration information
+                      {t('about.bizVerified')}
                     </p>
                   </div>
                 </div>
@@ -107,7 +94,7 @@ const AboutSection = () => {
           >
             {features.map((feature, index) => (
               <motion.div
-                key={feature.title}
+                key={feature.titleKey}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
@@ -117,10 +104,10 @@ const AboutSection = () => {
                   <feature.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                  {feature.title}
+                  {t(feature.titleKey)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {feature.description}
+                  {t(feature.descKey)}
                 </p>
               </motion.div>
             ))}

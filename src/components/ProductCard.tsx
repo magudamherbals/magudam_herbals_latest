@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Plus, Minus, Check, ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 import { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +16,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
   const { addToCart } = useCart();
+  const { t } = useLanguage();
 
   const images = product.images?.length ? product.images : [product.image];
 
@@ -36,12 +38,8 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   };
 
   const getCategoryLabel = (category: string) => {
-    switch (category) {
-      case 'soap': return 'Soap';
-      case 'oil': return 'Hair Oil';
-      case 'shampoo': return 'Shampoo';
-      default: return category;
-    }
+    const key = `products.cat.${category}`;
+    return t(key) !== key ? t(key) : category;
   };
 
   return (
@@ -103,7 +101,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           {!product.inStock && (
             <div className="absolute inset-0 bg-foreground/50 flex items-center justify-center">
               <span className="px-4 py-2 bg-destructive text-destructive-foreground rounded-full font-medium">
-                Out of Stock
+                {t('products.outOfStock')}
               </span>
             </div>
           )}
@@ -117,7 +115,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
           <h3 className="font-display text-xl font-semibold text-foreground mb-1">
-            {product.name}
+            {t(`p.${product.id}.name`) !== `p.${product.id}.name` ? t(`p.${product.id}.name`) : product.name}
           </h3>
           {product.specification && (
             <p className="text-sm text-primary font-medium mb-2">
@@ -125,12 +123,12 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
             </p>
           )}
           <p className="text-sm text-muted-foreground mb-4 line-clamp-3 min-h-[3.5rem]">
-            {product.description}
+            {t(`p.${product.id}.desc`) !== `p.${product.id}.desc` ? t(`p.${product.id}.desc`) : product.description}
           </p>
 
           {/* Ingredients */}
           <div className="mb-4 min-h-[5rem]">
-            <p className="text-xs text-muted-foreground mb-1">Key Ingredients:</p>
+            <p className="text-xs text-muted-foreground mb-1">{t('products.keyIngredients')}</p>
             <div className="flex flex-wrap gap-1">
               {product.ingredients.slice(0, 10).map((ing) => (
                 <span
@@ -142,7 +140,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
               ))}
               {product.ingredients.length > 10 && (
                 <span className="px-2 py-0.5 text-muted-foreground text-xs">
-                  +{product.ingredients.length - 10} more
+                  +{product.ingredients.length - 10} {t('products.more')}
                 </span>
               )}
             </div>
@@ -187,12 +185,12 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
                   {showAdded ? (
                     <>
                       <Check size={18} className="flex-shrink-0" />
-                      <span>Added!</span>
+                      <span>{t('products.added')}</span>
                     </>
                   ) : (
                     <>
                       <ShoppingCart size={18} className="flex-shrink-0" />
-                      <span>Add to Cart</span>
+                      <span>{t('products.addToCart')}</span>
                     </>
                   )}
                 </button>

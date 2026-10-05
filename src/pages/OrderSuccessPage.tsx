@@ -106,13 +106,12 @@ const OrderSuccessPage = () => {
               <div className="text-right">
                 <p className="text-sm text-muted-foreground">Status</p>
                 <span
-                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                    order.paymentStatus === 'paid'
-                      ? 'bg-primary/20 text-primary'
-                      : 'bg-accent/20 text-accent-foreground'
-                  }`}
+                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${order.paymentStatus === 'paid'
+                    ? 'bg-primary/20 text-primary'
+                    : 'bg-accent/20 text-accent-foreground'
+                    }`}
                 >
-                  {order.paymentStatus === 'paid' ? 'Paid' : 'Payment Pending (COD)'}
+                  {order.paymentStatus === 'paid' ? 'Paid' : 'Payment Pending'}
                 </span>
               </div>
             </div>

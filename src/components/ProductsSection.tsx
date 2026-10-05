@@ -3,11 +3,13 @@ import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import ProductCard from './ProductCard';
 import { useProducts } from '@/context/ProductContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ProductsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { products } = useProducts();
+  const { t } = useLanguage();
 
   return (
     <section id="products" className="section-padding bg-secondary/30" ref={ref}>
@@ -20,13 +22,13 @@ const ProductsSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            Our Products
+            {t('products.badge')}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Pure Herbal Essentials
+            {t('products.heading')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover our range of handcrafted herbal products, made with traditional recipes and natural ingredients.
+            {t('products.subheading')}
           </p>
         </motion.div>
 
