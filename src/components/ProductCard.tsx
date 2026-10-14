@@ -15,6 +15,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   const [showAdded, setShowAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
+  const [showFullDesc, setShowFullDesc] = useState(false);
   const { addToCart } = useCart();
   const { t } = useLanguage();
 
@@ -122,9 +123,22 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
               {product.specification}
             </p>
           )}
-          <p className="text-sm text-muted-foreground mb-4 line-clamp-3 min-h-[3.5rem]">
-            {t(`p.${product.id}.desc`) !== `p.${product.id}.desc` ? t(`p.${product.id}.desc`) : product.description}
-          </p>
+          <div className="mb-4 min-h-[3.5rem]">
+            <p className={`text-sm text-muted-foreground ${!showFullDesc ? 'line-clamp-3' : ''}`}>
+              {t(`p.${product.id}.desc`) !== `p.${product.id}.desc` ? t(`p.${product.id}.desc`) : product.description}
+            </p>
+            {(() => {
+              const desc = t(`p.${product.id}.desc`) !== `p.${product.id}.desc` ? t(`p.${product.id}.desc`) : product.description;
+              return desc.length > 90 ? (
+                <button
+                  onClick={() => setShowFullDesc(!showFullDesc)}
+                  className="text-xs text-primary font-medium mt-1 hover:underline focus:outline-none transition-colors"
+                >
+                  {showFullDesc ? '▲ Show less' : '▼ Read more'}
+                </button>
+              ) : null;
+            })()}
+          </div>
 
           {/* Ingredients */}
           <div className="mb-4 min-h-[5rem]">

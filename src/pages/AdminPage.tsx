@@ -15,7 +15,8 @@ import {
   Mail,
   Lock,
   Trash2,
-  RotateCcw
+  RotateCcw,
+  BarChart2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useOrders } from '@/context/OrderContext';
@@ -23,6 +24,7 @@ import { Order } from '@/types';
 import { toast } from 'sonner';
 import { supabase } from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
+import AnalyticsTab from '@/components/AnalyticsTab';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -77,7 +79,7 @@ const AdminPage = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   // View mode state (active or deleted orders)
-  const [viewMode, setViewMode] = useState<'active' | 'deleted'>('active');
+  const [viewMode, setViewMode] = useState<'active' | 'deleted' | 'analytics'>('active');
 
   const { orders, deletedOrders, updateOrderStatus, updatePaymentStatus, deleteOrder, restoreOrder, fetchDeletedOrders } = useOrders();
 
@@ -322,7 +324,7 @@ const AdminPage = () => {
       {/* Orders Content */}
       <div className="container-max px-4 md:px-8 py-6">
         {/* Tabs */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-6 flex-wrap">
           <button
             onClick={() => setViewMode('active')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -344,6 +346,17 @@ const AdminPage = () => {
           >
             <Trash2 size={18} />
             Deleted Orders ({deletedOrders.length})
+          </button>
+          <button
+            onClick={() => setViewMode('analytics')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              viewMode === 'analytics'
+                ? 'bg-purple-600 text-white'
+                : 'bg-secondary hover:bg-secondary/80'
+            }`}
+          >
+            <BarChart2 size={18} />
+            Analytics
           </button>
         </div>
 
@@ -698,7 +711,7 @@ const AdminPage = () => {
           </div>
         )}
           </>
-        ) : (
+        ) : viewMode === 'deleted' ? (
           /* Deleted Orders View */
           <>
             <h2 className="font-display text-2xl font-bold mb-6">
@@ -774,6 +787,9 @@ const AdminPage = () => {
               </div>
             )}
           </>
+        ) : (
+          /* Analytics Tab */
+          <AnalyticsTab orders={orders} />
         )}
       </div>
 
