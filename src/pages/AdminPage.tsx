@@ -16,7 +16,8 @@ import {
   Lock,
   Trash2,
   RotateCcw,
-  BarChart2
+  BarChart2,
+  Star
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useOrders } from '@/context/OrderContext';
@@ -25,6 +26,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
 import AnalyticsTab from '@/components/AnalyticsTab';
+import AdminReviewsTab from '@/components/AdminReviewsTab';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -79,7 +81,7 @@ const AdminPage = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   // View mode state (active or deleted orders)
-  const [viewMode, setViewMode] = useState<'active' | 'deleted' | 'analytics'>('active');
+  const [viewMode, setViewMode] = useState<'active' | 'deleted' | 'analytics' | 'reviews'>('active');
 
   const { orders, deletedOrders, updateOrderStatus, updatePaymentStatus, deleteOrder, restoreOrder, fetchDeletedOrders } = useOrders();
 
@@ -357,6 +359,17 @@ const AdminPage = () => {
           >
             <BarChart2 size={18} />
             Analytics
+          </button>
+          <button
+            onClick={() => setViewMode('reviews')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              viewMode === 'reviews'
+                ? 'bg-amber-500 text-white'
+                : 'bg-secondary hover:bg-secondary/80'
+            }`}
+          >
+            <Star size={18} />
+            Reviews
           </button>
         </div>
 
@@ -787,6 +800,9 @@ const AdminPage = () => {
               </div>
             )}
           </>
+        ) : viewMode === 'reviews' ? (
+          /* Reviews Tab */
+          <AdminReviewsTab />
         ) : (
           /* Analytics Tab */
           <AnalyticsTab orders={orders} />

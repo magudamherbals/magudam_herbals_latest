@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProductsSection from '@/components/ProductsSection';
+import ReviewSection from '@/components/ReviewSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import CartSidebar from '@/components/CartSidebar';
@@ -60,6 +61,7 @@ const Index = () => {
           />
           <AboutSection />
           <ProductsSection />
+          <ReviewSection />
           <ContactSection />
         </main>
         <Footer />

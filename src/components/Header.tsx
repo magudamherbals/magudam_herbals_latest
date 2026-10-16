@@ -93,14 +93,13 @@ const Header = () => {
             <button
               onClick={toggleLanguage}
               title="Switch language"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold border transition-all duration-300 ${
+              className={`flex items-center px-3.5 py-1.5 rounded-full text-sm font-semibold border transition-all duration-300 ${
                 isScrolled
                   ? 'border-border text-foreground hover:bg-secondary'
                   : 'border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10'
               }`}
             >
-              <span className="text-base">{language === 'en' ? '🇮🇳' : '🇬🇧'}</span>
-              <span>{language === 'en' ? 'தமிழ்' : 'EN'}</span>
+              <span>{language === 'en' ? 'தமிழ்' : 'English'}</span>
             </button>
 
             {/* Cart Button */}
